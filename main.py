@@ -1,5 +1,8 @@
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtWidgets, uic, QtGui, QtCore
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QLabel
 import sys
+
 
 class mywindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -8,8 +11,13 @@ class mywindow(QtWidgets.QMainWindow):
         self.pushButton.clicked.connect(self.openSpec)
 
     def openSpec(self):
-        directory = QtWidgets.QFileDialog.getOpenFileName(self, "Выберите папку")
-        print(directory)
+        fname = QtWidgets.QFileDialog.getOpenFileName(None, "Выберите файл спектра")
+        path = fname[0]
+        #print(path)
+        pixmap = QPixmap(path)
+        self.label.setPixmap(pixmap)
+
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
