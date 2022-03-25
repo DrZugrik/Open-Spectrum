@@ -14,9 +14,10 @@ class mywindow(QtWidgets.QMainWindow):
         self.pushButton.clicked.connect(self.openSpec)
 
     def openSpec(self):
-        # fname = QtWidgets.QFileDialog.getOpenFileName(None, "Выберите файл спектра")
-        # path = fname[0]
-        # print(path)
+        v2=[]
+        #fname = QtWidgets.QFileDialog.getOpenFileName(None, "Выберите файл спектра")
+        #path = fname[0]
+        #print(path)
         path = 'TestPics/test1.jpg'
         pixmap = QPixmap(path)
         self.label.setPixmap(pixmap)
@@ -33,6 +34,26 @@ class mywindow(QtWidgets.QMainWindow):
 
         '''values = list(im.getdata())
         print(values)'''
+
+        
+        plt.title("Интенсивность излучения по линиям спектра") # заголовок
+        plt.xlabel("Длина волны, нм") # ось абсцисс
+        x = np.linspace(380, 780, len(v))
+
+        plt.subplot(2, 1, 1)
+        plt.ylabel("Интенсивность излучения RGB") # ось ординат
+        plt.xlabel("Длина волны, нм") # ось абсцисс
+        #x = np.linspace(0, 210, 50)
+        plt.plot(x, v)
+        plt.grid(True)
+
+        plt.subplot(2, 1, 2)
+        plt.ylabel("Интенсивность излучения результирующая") # ось ординат
+        plt.xlabel("Длина волны, нм") # ось абсцисс
+        #x = np.linspace(0, 210, 50)
+        plt.plot(x, v)
+        plt.grid(True)
+        plt.show()
 
 
 
