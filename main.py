@@ -15,10 +15,10 @@ class mywindow(QtWidgets.QMainWindow):
 
     def openSpec(self):
         v2=[]
-        #fname = QtWidgets.QFileDialog.getOpenFileName(None, "Выберите файл спектра")
-        #path = fname[0]
+        fname = QtWidgets.QFileDialog.getOpenFileName(None, "Выберите файл спектра")
+        path = fname[0]
         #print(path)
-        path = 'TestPics/test1.jpg'
+        #path = 'TestPics/test1.jpg'
         pixmap = QPixmap(path)
         self.label.setPixmap(pixmap)
 
@@ -32,8 +32,12 @@ class mywindow(QtWidgets.QMainWindow):
         print(v)
         print(len(v))
 
-        '''values = list(im.getdata())
-        print(values)'''
+        for t in (v):
+            t = (t[0]+t[1]+t[2])//3
+            v2.append(t)
+        #print(v2)
+
+
 
         
         plt.title("Интенсивность излучения по линиям спектра") # заголовок
@@ -51,7 +55,7 @@ class mywindow(QtWidgets.QMainWindow):
         plt.ylabel("Интенсивность излучения результирующая") # ось ординат
         plt.xlabel("Длина волны, нм") # ось абсцисс
         #x = np.linspace(0, 210, 50)
-        plt.plot(x, v)
+        plt.plot(x, v2)
         plt.grid(True)
         plt.show()
 
