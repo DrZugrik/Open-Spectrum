@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic, QtGui, QtCore
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QLabel
-import sys
+from PyQt5.QtWidgets import QLabel, QSlider
+import sys, os
 import PIL
 from PIL import Image
 import numpy as np
@@ -10,7 +10,7 @@ import cv2 as cv
 import shutil
 
 
-hsv_min = np.array((25, 25, 25), np.uint8)
+hsv_min = np.array((80, 0, 60), np.uint8)
 hsv_max = np.array((255, 255, 255), np.uint8)
 
 class mywindow(QtWidgets.QMainWindow):
@@ -30,6 +30,8 @@ class mywindow(QtWidgets.QMainWindow):
         self.label.setPixmap(pixmap)
         shutil.copyfile(path, 'temp_.jpg')
 
+
+
         img = cv.imread('temp_.jpg')
         hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)  # меняем цветовую модель с BGR на HSV
         thresh = cv.inRange(hsv, hsv_min, hsv_max)  # применяем цветовой фильтр
@@ -41,11 +43,11 @@ class mywindow(QtWidgets.QMainWindow):
             box = cv.boxPoints(rect)  # поиск четырех вершин прямоугольника
             box = np.int0(box)  # округление координат
             area = int(rect[1][0] * rect[1][1])  # вычисление площади
-            if area > 1000:
+            if area > 500:
                 cv.drawContours(img, [box], 0, (255, 0, 0), 2)  # рисуем прямоугольник
 
         cv.imshow('contours', img)  # вывод обработанного кадра в окно
-
+        #self.lable.setPixmap(img)
         im = Image.open(path)
         print(im.size)
         central_line = im.size[0] // 2
