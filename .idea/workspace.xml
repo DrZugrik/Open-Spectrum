@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdc4cab1-cebb-4d7a-b059-34aad214128a" name="Changes" comment="Add dislay file spectrum">
+    <list default="true" id="cdc4cab1-cebb-4d7a-b059-34aad214128a" name="Changes" comment="Correct figure">
+      <change beforePath="$PROJECT_DIR$/.idea/OpenSpectrum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OpenSpectrum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui.ui" beforeDir="false" afterPath="$PROJECT_DIR$/gui.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648029230311</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Correct figure">
+      <created>1648244119303</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648244119303</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -141,6 +151,7 @@
     <MESSAGE value="Add OpenDialog" />
     <MESSAGE value="Add Test files" />
     <MESSAGE value="Add dislay file spectrum" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add dislay file spectrum" />
+    <MESSAGE value="Correct figure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct figure" />
   </component>
 </project>
