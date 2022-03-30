@@ -1,8 +1,10 @@
 from PyQt5 import QtWidgets, uic, QtGui, QtCore
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QPainter, QPen, QFont, QColor
 from PyQt5.QtWidgets import QLabel, QSlider
 import sys, os
 import PIL
+from PIL import Image, ImageDraw
+from PIL.ImageQt import ImageQt
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,25 +15,28 @@ import shutil
 hsv_min = np.array((80, 0, 60), np.uint8)
 hsv_max = np.array((255, 255, 255), np.uint8)
 
+
 class mywindow(QtWidgets.QMainWindow):
     def __init__(self):
+
         QtWidgets.QWidget.__init__(self)
         uic.loadUi("gui.ui", self)
         self.pushButton.clicked.connect(self.openSpec)
+        self.pushButton_2.clicked.connect(self.drawSpec)
+        self.pushButton_2.setVisible(False)
+
 
     def openSpec(self):
-        v2=[]
+        global v
+        global im
+        v2 = []
         fname = QtWidgets.QFileDialog.getOpenFileName(None, "Выберите файл спектра")
         path = fname[0]
-        print(path)
-        #path = 'TestPics/test1.jpg'
+        #print(path)
+        print('Open file spectrum')
 
-        pixmap = QPixmap(path)
-        self.label.setPixmap(pixmap)
+
         shutil.copyfile(path, 'temp_.jpg')
-
-
-
         img = cv.imread('temp_.jpg')
         hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)  # меняем цветовую модель с BGR на HSV
         thresh = cv.inRange(hsv, hsv_min, hsv_max)  # применяем цветовой фильтр
@@ -46,17 +51,24 @@ class mywindow(QtWidgets.QMainWindow):
             if area > 500:
                 cv.drawContours(img, [box], 0, (255, 0, 0), 2)  # рисуем прямоугольник
 
-        cv.imshow('contours', img)  # вывод обработанного кадра в окно
+        #cv.imshow('contours', img)  # вывод обработанного кадра в окно
+        cv.imwrite('temp__.jpg', img)
+
+        print('Add box to spectrum')
+
         #self.lable.setPixmap(img)
         im = Image.open(path)
-        print(im.size)
-        central_line = im.size[0] // 2
-        print(central_line)
-        im = im.crop((0, 60, im.size[1], 61))
+        #print(im.size)
+        central_line = im.size[1] // 2
+        #print(central_line)
+        #print(f'Ширина = {im.size[0]}')
+        #print(f'Высота = {im.size[1]}')
+
+        im = im.crop((0, central_line, im.size[0], central_line+1))
         v = list(im.getdata())
-        print(im.size)
-        print(v)
-        print(len(v))
+        #print(im.size)
+        #print(v)
+        #print(len(v))
         im.close()
 
         for t in (v):
@@ -81,12 +93,43 @@ class mywindow(QtWidgets.QMainWindow):
         # x = np.linspace(0, 210, 50)
         plt.plot(x, v2)
         plt.grid(True)
-        plt.show()
+        #plt.show()
 
-
-
+        pixmap = QPixmap('temp__.jpg')
+        #pixmap = QPixmap.scaled(651, 431, Qt.KeepAspectRatio)
+        self.label_4.setPixmap(pixmap)
+        #print(f'pixmap = {type(pixmap)}')
+        self.pushButton_2.setVisible(True)
 
         
+    def drawSpec(self):
+        print('Draw spectrum')
+        #print(f'spec = {v}')
+        self.pushButton_2.setVisible(False)
+
+        h = im.size[1]
+        w = 651
+
+        img = Image.new(mode="RGB", size=(len(v), h), color=0)
+        #print(f'len(v) -- {len(v)}')
+        for k in range(h):
+            for p in range(len(v)):
+                img.putpixel((p, k), v[p])
+
+
+
+
+        qim = ImageQt(img)
+        pix = QtGui.QPixmap.fromImage(qim)
+        #print(f'img = {type(img)}')
+        #print(f'qim = {type(qim)}')
+        #print(f'pix = {type(pix)}')
+        self.label.setPixmap(pix)
+
+
+
+
+
 
 
 
