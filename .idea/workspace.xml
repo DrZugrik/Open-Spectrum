@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdc4cab1-cebb-4d7a-b059-34aad214128a" name="Changes" comment="Redesign ui">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="cdc4cab1-cebb-4d7a-b059-34aad214128a" name="Changes" comment="Add draw spectrum miniature">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui.ui" beforeDir="false" afterPath="$PROJECT_DIR$/gui.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -146,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648543974953</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add draw spectrum miniature">
+      <created>1648647025787</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1648647025787</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +173,7 @@
     <MESSAGE value="Correct figure" />
     <MESSAGE value="Add rectangles" />
     <MESSAGE value="Redesign ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redesign ui" />
+    <MESSAGE value="Add draw spectrum miniature" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add draw spectrum miniature" />
   </component>
 </project>

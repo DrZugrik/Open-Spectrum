@@ -25,6 +25,32 @@ class mywindow(QtWidgets.QMainWindow):
         self.pushButton_2.clicked.connect(self.drawSpec)
         self.pushButton_2.setVisible(False)
 
+        self.horizontalSlider.valueChanged[int].connect(self.hsvMin)
+        self.horizontalSlider_2.valueChanged[int].connect(self.hsvMax)
+
+        self.horizontalSlider.setMaximum(255)
+        self.horizontalSlider_2.setMaximum(255)
+
+
+    def hsvMin(self, value):
+        #global hsv_min
+        hsv_min = value
+        Label_2 = QLabel(self)
+        self.label_2.setText(str(value))
+        print(f"hsv_min = {hsv_min}")
+        #return hsv_min
+
+
+    def hsvMax(self, value):
+        #global hsv_max
+        hsv_max = value
+        Label_3 = QLabel(self)
+        self.label_3.setText(str(value))
+        print(f"hsv_max = {hsv_max}")
+        #return hsv_min
+
+
+
 
     def openSpec(self):
         global v
@@ -97,6 +123,7 @@ class mywindow(QtWidgets.QMainWindow):
 
         pixmap = QPixmap('temp__.jpg')
         #pixmap = QPixmap.scaled(651, 431, Qt.KeepAspectRatio)
+        pixmap = pixmap.scaled(651, 431)
         self.label_4.setPixmap(pixmap)
         #print(f'pixmap = {type(pixmap)}')
         self.pushButton_2.setVisible(True)
