@@ -43,45 +43,57 @@ class mywindow(QtWidgets.QMainWindow):
 
 
         self.horizontalSlider.setMaximum(255)
+        self.horizontalSlider.setValue(1)
         self.horizontalSlider_2.setMaximum(255)
+        self.horizontalSlider_2.setValue(255)
 
         self.horizontalSlider_3.setMaximum(255)
+        self.horizontalSlider_3.setValue(1)
         self.horizontalSlider_4.setMaximum(255)
+        self.horizontalSlider_4.setValue(255)
 
         self.horizontalSlider_5.setMaximum(255)
+        self.horizontalSlider_5.setValue(1)
         self.horizontalSlider_6.setMaximum(255)
+        self.horizontalSlider_6.setValue(255)
 
 # ========================== Sliders ====================================++++++
 
     def hMin(self, value):
         global h_min
+        value == 1
         self.label_2.setText(str(value))
         h_min = value
 
     def hMax(self, value):
         global h_max
+        value == 255
         self.label_3.setText(str(value))
         h_max = value
 
 
     def sMin(self, value):
         global s_min
+        value == 1
         self.label_10.setText(str(value))
         s_min = value
 
     def sMax(self, value):
         global s_max
+        value == 255
         self.label_8.setText(str(value))
         s_max = value
 
 
     def vMin(self, value):
         global v_min
+        value == 1
         self.label_11.setText(str(value))
         v_min = value
 
     def vMax(self, value):
         global v_max
+        value == 255
         self.label_14.setText(str(value))
         v_max = value
 
@@ -100,6 +112,18 @@ class mywindow(QtWidgets.QMainWindow):
 
 # ========================== Found contour ====================================
 
+    # ============== Выводим фотку спектра с контуром =============================
+
+        pixmap = QPixmap(path)
+        pixmap = pixmap.scaled(651, 431)
+        self.label_4.setPixmap(pixmap)
+        # print(f'pixmap = {type(pixmap)}')
+        self.pushButton_2.setVisible(True)
+
+        print('Draw pixmap without a contour')
+
+
+
         shutil.copyfile(path, 'temp_.jpg')
         img = cv.imread('temp_.jpg')
         hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)  # меняем цветовую модель с BGR на HSV
@@ -114,6 +138,7 @@ class mywindow(QtWidgets.QMainWindow):
 
         '''print(f'hsv_min_1 = {hsv_min_1}')
         print(f'hsv_max_1 = {hsv_max_1}')'''
+
 
         # перебираем все найденные контуры в цикле
         for cnt in contours:
